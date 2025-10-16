@@ -1,6 +1,7 @@
 # Getting started with create My Banking App - Use Case
     - created a react app
     - configured tailwind
+    - Router configuration - react-router 
 
 # Core Features of this project
     1. Login Page with authentication
