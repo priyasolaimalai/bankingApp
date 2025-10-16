@@ -1,11 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route } from "react-router";
+import Body from "./components/Body";
+
 
 function App() {
   return (
-    <div className="App">
-      My React App
-    </div>
+    <>
+    <Body/>
+    </>
   );
 }
 
