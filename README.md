@@ -1,4 +1,4 @@
-# Getting started with create My Banking App - Use Cases
+# Getting started with create My Banking App - Use Case
     - created a react app
     - configured tailwind
 
