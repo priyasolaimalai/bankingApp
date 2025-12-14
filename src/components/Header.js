@@ -1,14 +1,43 @@
-import React, {use, useState} from 'react'
+import { use, useContext, useEffect, useState} from 'react'
 import logo from '../bank-logo.png'
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { userName } from '../utils/globestate';
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+
 
 const Header = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
+    
+
+    const name = useContext(userName);
+    const navigate = useNavigate();
 
     const handlemenuopen = () => {
         setMenuOpen(!menuOpen);
     }
+  
+    const handlesignout = () => {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+        // Sign-out successful.
+        navigate('/');
+        }).catch((error) => {
+        // An error happened.
+        });
+    }
+
+    
+        //console.log("Username in header:",name);
+        const auth = getAuth();
+                onAuthStateChanged(auth, (user) => {
+                if (!user) {
+                 navigate('/');
+                   
+                } 
+                });
+ 
+
 
   return (
   
@@ -16,7 +45,7 @@ const Header = () => {
         <div className='container mx-auto flex justify-between items-center'>
             <div className='flex items-center justify-between w-full'>
                 <div className='flex items-center space-x-10'>
-                <img src={logo} alt='Bank Logo' className='h-10 w-auto'/>  
+               <Link to={"/dashboard"}> <img src={logo} alt='Bank Logo' className='h-10 w-auto'/>  </Link>
                 <div className='menuItems flex space-x-4'>
                     <div className='text-white text-md'><Link to={"/dashboard"}>Dashboard</Link></div>    
                     <div className='text-white text-md'><Link to={"/accountsummary"}>Account Summary</Link></div>    
@@ -31,7 +60,13 @@ const Header = () => {
                     <circle cx="12" cy="9" r="3" stroke="white"/>
                     <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
                     </svg>
-                    <p>John Doe</p></div>
+                    <div>
+                    <p>{name}</p>
+                    <button className='text-white border-b-2 text-sm' onClick={handlesignout}>LogOut</button>
+                    </div>
+                    </div>
+                    
+                    
                 </div>     
             </div>
         </div>

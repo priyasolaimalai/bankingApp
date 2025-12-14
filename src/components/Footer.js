@@ -2,8 +2,9 @@ import React from 'react'
 
 const Footer = () => {
   return (
-   <div className='mx-auto max-w-9xl px-2 sm:px-6 lg:px-8'>
-    Footer</div>
+   <footer className='bg-gray-400 text-white text-center'>
+  © {new Date().getFullYear()} MyBankingApp. All rights reserved.
+</footer>
   )
 }
 
